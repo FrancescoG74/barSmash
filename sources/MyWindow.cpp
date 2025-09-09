@@ -7,6 +7,11 @@ MyWindow::MyWindow() : barX(0) {
     resize(800, 600);
     bar = QPixmap("../resources/bar1.png");
     background = QPixmap("../resources/background.png");
+    QPixmap originalBall("../resources/ball.png");
+    ball = originalBall.scaled(originalBall.width() / 2, originalBall.height() / 2, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    // Center the ball
+    ballX = (width() - ball.width()) / 2;
+    ballY = (height() - ball.height()) / 2;
 }
 
 void MyWindow::keyPressEvent(QKeyEvent *event) {
@@ -33,4 +38,6 @@ void MyWindow::paintEvent(QPaintEvent *) {
     int margin = 30;
     int barY = height() - bar.height() - margin;
     painter.drawPixmap(barX, barY, bar);
+    // Draw ball
+    painter.drawPixmap(ballX, ballY, ball);
 }

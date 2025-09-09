@@ -16,5 +16,8 @@ protected:
 private:
     QPixmap bar;
     QPixmap background;
+    QPixmap ball;
     int barX;
+    int ballX = 0;
+    int ballY = 0;
 };
