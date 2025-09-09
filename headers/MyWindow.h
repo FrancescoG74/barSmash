@@ -26,6 +26,7 @@ private:
     Ball ball;
     Bar bar;
     std::vector<Brick> bricks;
+    int score = 0;
     bool ballAttached = true;
     QTimer *timer = nullptr;
 private slots:

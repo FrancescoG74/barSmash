@@ -62,6 +62,18 @@ void MyWindow::keyPressEvent(QKeyEvent *event) {
             ball.vx = vx;
             ball.vy = -4.0f;
         }
+    } else if (event->key() == Qt::Key_R) {
+        // Restart game
+        score = 0;
+        for (auto& brick : bricks) {
+            brick.destroyed = false;
+        }
+        ballAttached = true;
+        ball.vx = 0;
+        ball.vy = 0;
+        ball.x = bar.x + (bar.pixmap.width() - ball.pixmap.width()) / 2;
+        ball.y = bar.y - ball.pixmap.height();
+        update();
     } else {
         QWidget::keyPressEvent(event);
     }
@@ -106,6 +118,7 @@ void MyWindow::onTimer() {
             if (ballRight >= brickLeft && ballLeft <= brickRight && ballBottom >= brickTop && ballTop <= brickBottom) {
                 brick.destroyed = true;
                 ball.vy = -ball.vy;
+                score += 1;
                 break;
             }
         }
@@ -139,4 +152,13 @@ void MyWindow::paintEvent(QPaintEvent *) {
     painter.drawPixmap((int)bar.x, (int)bar.y, bar.pixmap);
     // Draw ball
     painter.drawPixmap((int)ball.x, (int)ball.y, ball.pixmap);
+    // Draw score in top right
+    QFont font = painter.font();
+    font.setPointSize(18);
+    painter.setFont(font);
+    painter.setPen(Qt::white);
+    QString scoreText = QString("Score: %1").arg(score);
+    int margin = 20;
+    int textWidth = painter.fontMetrics().horizontalAdvance(scoreText);
+    painter.drawText(width() - textWidth - margin, margin + painter.fontMetrics().height(), scoreText);
 }
