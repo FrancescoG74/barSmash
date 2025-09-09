@@ -2,22 +2,32 @@
 #pragma once
 #include <algorithm>
 
+
 #include <QWidget>
 #include <QKeyEvent>
 #include <QPainter>
 #include <QPixmap>
+#include <QTimer>
+#include "Ball.h"
+#include "Bar.h"
+#include "Brick.h"
 
 class MyWindow : public QWidget {
+//    Q_OBJECT
 public:
     MyWindow();
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
 private:
-    QPixmap bar;
+    QPixmap barPixmap;
     QPixmap background;
-    QPixmap ball;
-    int barX;
-    int ballX = 0;
-    int ballY = 0;
+    QPixmap ballPixmap;
+    Ball ball;
+    Bar bar;
+    std::vector<Brick> bricks;
+    bool ballAttached = true;
+    QTimer *timer = nullptr;
+private slots:
+    void onTimer();
 };
