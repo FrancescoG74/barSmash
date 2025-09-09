@@ -24,4 +24,13 @@
 - `CMakeLists.txt`: CMake configuration for Qt6
 
 ---
+
+## Game Controls
+
+- **Left Arrow**: Move bar left
+- **Right Arrow**: Move bar right
+- **Space**: Launch ball
+- **R**: Restart game (reset bricks and score)
+- **Q** or **Escape**: Quit game
+
 This project demonstrates a basic Qt6 Widgets application using CMake.
