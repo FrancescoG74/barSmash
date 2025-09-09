@@ -1,4 +1,4 @@
-# Barretta2 Qt6 CMake Project
+# barSmash Qt6 CMake Project
 
 ## Build Instructions
 
@@ -16,7 +16,7 @@
 
 3. **Run the Application**
    ```bash
-   ./Barretta2
+   ./barSmash
    ```
 
 ## Project Structure
